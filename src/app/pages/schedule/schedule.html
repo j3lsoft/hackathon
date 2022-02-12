@@ -1,0 +1,59 @@
+<ion-header translucent="true">
+  <ion-toolbar>
+    <ion-buttons *ngIf="!showSearchbar" slot="start">
+      <ion-menu-button></ion-menu-button>
+    </ion-buttons>
+    <ion-segment *ngIf="ios" [(ngModel)]="segment" (ionChange)="updateSchedule()">
+      <ion-segment-button value="all">
+        Next
+      </ion-segment-button>
+      <ion-segment-button value="favorites">
+        Previous
+      </ion-segment-button>
+    </ion-segment>
+    <ion-title *ngIf="!ios && !showSearchbar">Drive</ion-title>
+    <ion-searchbar *ngIf="showSearchbar" showCancelButton="always" [(ngModel)]="queryText" (ionChange)="updateSchedule()" (ionCancel)="showSearchbar = false" placeholder="Search"></ion-searchbar>
+
+  </ion-toolbar>
+</ion-header>
+
+<ion-content fullscreen="true">
+  <div #mapCanvas class="map-canvas"></div>
+  <div class="drive-info">
+    <ion-list class="drive-options">
+      <ion-item>
+        <ion-label class="item-header">
+            <p style="color: darkcyan;">Time: </p>
+            <p style="color: darkcyan; font-weight: 600;">Today, Noon at - 16:00 </p>
+        </ion-label>
+        <ion-button class="extend-button" fill="solid" size="default" slot="end" color="success" shape="round">Extend</ion-button>
+      </ion-item>
+        <ion-item-sliding>
+          <ion-item>
+            <!--<ion-label>-->
+               <div style ="width: 90%;"> 
+                  <p style="color: black; font-size: 16px; font-weight: 600;">Drop off</p>
+                  <p style="font-size: 14px; color: dimgrey; font-weight: 600;">3001 Nw 87th Ave Miami, FL 33172</p>
+               </div> 
+               <div style ="width: 10%;">
+                <ion-icon class="button-dropoff" name="chevron-forward-outline"></ion-icon>
+               </div>
+             <!-- </ion-label>-->
+          </ion-item>
+          <ion-item-options style="background: cadetblue;" side="start" inset="true" lines="full">
+            <ion-item-option style="background: cadetblue;">Begin</ion-item-option>
+          </ion-item-options>
+        </ion-item-sliding>
+      <ion-item>
+        <div style ="width: 50%;">
+           <p class="item-header">Sleeper Tractor Rental</p>
+           <p style="font-size: 14px; color: dimgrey; font-weight: 600;">Doral, FL</p>
+           <p style="font-size: 14px; color: dimgrey; font-weight: 600;">Licence plate: 8RX571</p>
+          </div>
+        <div style ="width: 50%;">
+          <img src="../../../assets/img/Sleeper.jpg" /> 
+        </div>
+      </ion-item>
+    </ion-list>
+  </div>
+</ion-content>
